@@ -1,0 +1,23 @@
+services:
+    ollama:
+        runtime: nvidia
+        image: ollama/ollama:latest
+        container_name: ollama
+        environment:
+            - OLLAMA_ORIGINS=*
+        extra_hosts:
+            - "ollama:host-gateway"
+        deploy:
+            resources:
+                reservations:
+                    devices:
+                        - driver: nvidia
+                          count: all
+                          capabilities: [gpu]
+        ports:
+            - "11434:11434"
+        volumes:
+            - "YOUR_PATH:/root/.ollama"
+
+        
+
