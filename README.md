@@ -1,2 +1,35 @@
 # easy_code
 Упрощаем разработку своего проекта с помощью локальной нейронки
+
+## Ставим Олламу и нужные модели(потребуется около 10 гб)
+  * Ставим docker и docker-compose(v2) на машину где будет работать нейронка
+  * Качаем [compose.yaml](./compose.yaml)
+  * Меняем на 20й строке YOUR_PATH на ваш путь до места где будете хранить данные олламы
+  * Из папки где лежит compose.yaml запускаем(```docker compose up -d```)
+  * Пролезаем в контейнер(```docker exec -ti ollama /bin/bash```)
+  * Внутри контейнера олламы тащим модельки:
+    
+      ```ollama pull llama3.1:8b```
+    
+      ```ollama pull qwen2.5-coder:1.5b-base```
+    
+      ```ollama pull nomic-embed-text:latest```
+
+## Ставим Continue
+  * На Pycharm или VSCode https://docs.continue.dev/getting-started/install
+  * (Далее для пайчарм покажу, на вскоде примерно так же)
+  * Выбираем работу локального ассистента ![image](https://github.com/user-attachments/assets/2d0bfbfe-380b-477a-b3ec-939f133f1c8a)
+  * Открываем ~/.continue/config.yaml (Linux) либо ВАШПОЛЬЗОВАТЕЛЬ/.continue/config.yaml (Windows)
+  * Меняем там содержимое на содержимое из файла [config.yaml](./config.yaml)
+  * Меняем в .continue/config.yaml значение <OLLAMA_IP> на IP машины где крутится ваша Ollama
+
+## Пользуемся
+  * В этой настройке ставим Чат ![image](https://github.com/user-attachments/assets/32a58540-6be1-4a43-9e77-aa55b00c3fac)
+  * Открываем любой проект
+  * Спрашиваем о том или ином файле, папке, ошибке
+  * Чтобы добавить контекст, жмём ctrl+Enter при отправке, система поищет нужные файлы и постарается их отправить
+  * Так же можно через @ в чате вызвать меню которое поможет выбрать/добавить файл/директорию итп в контекст
+
+## Теперь у вас есть контекст вашего проекта и можно с ним удобно работать, поздравляю!
+
+ 
